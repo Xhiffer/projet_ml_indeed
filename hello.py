@@ -1,3 +1,3 @@
 
-print('Hello, salut ça va? Mal')
+print('Hello')
 
