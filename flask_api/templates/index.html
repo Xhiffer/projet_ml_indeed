@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Indeed - salary deduction</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://onts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+  <link rel="icon" href="/static/img/simplon-logo.png">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- bdd link-->
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <a href="/mongodb" ><div class="linkbdd">Indeed database  <img src="/static/img/json.png" alt="Smiley face" height="20" width="20"></div></a>
+              </button>
+            </div>
+
+
+            &nbsp;
+
+            <!-- github link -->
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <a href="https://github.com/Xhiffer/projet_ml_indeed" ><div class="linkgit">GitHub <img src="/static/img/github.png" alt="Smiley face" height="16" width="31"></div></a>
+              </button>
+            </div>
+
+            &nbsp;
+
+            <!-- salaires -->
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <a href="/" ><div class="linkgit">Salaires <img src="/static/img/machine_learning.png" alt="Smiley face" height="20" width="20"></div></a>
+              </button>
+            </div>
+
+            
+        </nav>
+
+        <!-- End of Topbar -->
+
+
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-primary ">Indeed salary estimation</h1>
+            <a href="mailto:matthew.ejaz@gmail.com" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Need other info ?</a>
+          </div>
+          <!-- Need query options comment link les query avec python ? :-->
+          <a class="h4 mb-0 text-primary  ">poste specifications : </a>
+          <div class="dropdown mb-4">
+              <select name = 'poste' class="btn btn-info dropdown-toggle">
+                  <option selected disabled hidden>poste</option>
+                  <option value="">Tout les postes</option>
+                  <option value="developpeur">Développeur</option>
+                  <option value="business intelligence">business intelligence</option>
+                  <option value="data scientist">Data scientist</option>
+                  <option value="data analyst">Data analyst</option>
+              </select>
+              &nbsp;
+              <select name='ville' class="btn btn-info dropdown-toggle">
+                  <option selected disabled hidden>ville</option>
+                  <option value="">Toutes les villes</option>
+                  <option value="nantes">Nantes</option>
+                  <option value="bordeaux">Bordeaux</option>
+                  <option value="ile-de-france">Île-de-France</option>
+                  <option value="lyon">Lyon</option>
+                  <option value="toulouse">Toulouse</option>
+              </select>
+              &nbsp;
+              <select name = 'contrat' class="btn btn-info  dropdown-toggle">
+                  <option selected disabled hidden>Contrat</option>
+                  <option value="">Tout Contrats</option>
+                  <option value="cdi">CDI</option>
+                  <option value="cdd">CDD</option>
+                  <option value="stage">Stage</option>
+                  <option value="freelance">Freelance</option>
+              </select>
+              <div class="btn btn-info ">
+                <a>dates de :</a>
+                <input name = 'date_debut' type="date" value="2018-01-01">
+                <a> à </a>
+                <input name = 'date_fin' type="date" value="2019-10-04">
+              </div>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <a onclick="query()" class="btn btn-primary  btn-circle btn-lg">
+                <i class="fas fa-check"></i>
+                <script>
+                  function query() {
+                    var poste = document.getElementsByName("poste")[0].value;
+                    var ville = document.getElementsByName("ville")[0].value;
+                    var contrat = document.getElementsByName("contrat")[0].value;
+                    var date_debut = document.getElementsByName("date_debut")[0].value;
+                    var date_fin = document.getElementsByName("date_fin")[0].value;
+                    window.open('/'+poste+'.'+ville+'.'+contrat+'.'+date_debut+'.'+date_fin,"_self")
+                  }
+                </script>
+              </a>
+          </div>
+
+
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <div class ='center-graph'>
+                      <!--id="myAreaChart" <canvas >{{pie_chart}}</canvas>--> 
+                      {% block graph %}
+                      <body class="graph">
+                          <div class="container" align="left">
+                            <embed type="image/svg+xml" src={{graph_chart|safe}} style='max-width:300px'/>
+                          </div>
+                      </body>
+                      {% endblock %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                <!-- <script src="/static/js/demo/chart-area-demo.js"></script>-->
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                </div>
+                <!-- Card Body <canvas id="myPieChart"></canvas> -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                      <div class ='center-pie'>
+                        {% block pie %}
+                        <body class="pie">
+                            <div class="container" align="left">
+                              <embed type="image/svg+xml" src={{pie_chart|safe}} style='max-width:200'/>
+                            </div>
+                        </body>
+                        {% endblock %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Content Row -->
+          <div class="row">
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Pending Requests Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">last 10 Indeed offers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      </div>
+                      <div class="col-auto">
+                          <img src="/static/img/indeed.png" alt="Smiley face" height="46" width="68">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Content Row -->
+
+              <!-- Color System -->
+              <div class="row">
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                      Primary
+                      <div class="text-white-50 small">#4e73df</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                      Success
+                      <div class="text-white-50 small">#1cc88a</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                      Info
+                      <div class="text-white-50 small">#36b9cc</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                      Warning
+                      <div class="text-white-50 small">#f6c23e</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                      Danger
+                      <div class="text-white-50 small">#e74a3b</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-secondary text-white shadow">
+                    <div class="card-body">
+                      Secondary
+                      <div class="text-white-50 small">#858796</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-6 mb-4">
+              <!-- Approach -->
+              <div class = 'card-header-center'>
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Projet de 1 mois</h6>
+                  </div>
+                  <div class="card-body">
+                    <p>ce site a etais crée pour un projet formation.</p>
+                    <p class="mb-0">Contexte sur notre emploiyeur fictif : </p>
+                    <p class="mb-0">Je suis CEO d’une boite qui s’occupe de faire des statistiques sur l’emploi dans le secteur du développement informatique et de la data à Paris, Lyon, Toulouse, Nantes et Bordeaux. 
+                        Je m’intéresse tout particulièrement aux différences de salaires entre ces métiers + villes.
+                        Je vous mandate afin de me fournir une étude sur ce marché à présenter sous forme de Dashboard.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Indeed salary estimator 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/static/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/static/js/demo/chart-area-demo.js"></script>
+  <script src="/static/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
